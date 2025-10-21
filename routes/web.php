@@ -7,6 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -18,3 +19,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+=======
+
+Route::get('/evento', function () {
+    return view('evento');
+});
+>>>>>>> b2fa2856ad92382971c4d70cf0b6204ee45b2150
