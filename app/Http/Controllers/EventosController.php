@@ -5,61 +5,44 @@ namespace App\Http\Controllers;
 use App\Models\Eventos;
 use Illuminate\Http\Request;
 
-class EventosController extends Controller
+class EventoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $eventos = Eventos::all();
+        return view('eventos.index', compact('eventos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('eventos.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        Eventos::create($request->all());
+        return redirect()->route('eventos.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Eventos $eventos)
+    public function edit($id_eventos)
     {
-        //
+        $evento = Eventos::findOrFail($id_eventos);
+        return view('eventos.edit', compact('evento'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Eventos $eventos)
+    public function update(Request $request, $id_eventos)
     {
-        //
+        $evento = Eventos::findOrFail($id_eventos);
+        $evento->update($request->all());
+        return redirect()->route('eventos.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Eventos $eventos)
+    public function destroy($id_eventos)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Eventos $eventos)
-    {
-        //
+        $evento = Eventos::findOrFail($id_eventos);
+        $evento->delete();
+        return redirect()->route('eventos.index');
     }
 }
+
+// Comentario para que se envien los cambios
