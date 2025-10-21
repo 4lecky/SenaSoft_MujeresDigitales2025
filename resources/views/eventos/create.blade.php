@@ -10,9 +10,9 @@
 
 <body>
 
-    <div class="seccionForm">
+    <div class="seccionForm" >
 
-        <form action="" class="container_form">
+        <form action="" class="container_form" method='POST'>
 
             <div class="campo">
                 <label for="" class="label_style">Nombre del evento</label>

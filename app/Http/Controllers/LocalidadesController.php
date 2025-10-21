@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Localidades;
 use Illuminate\Http\Request;
 
-class LocalidadController extends Controller
+class LocalidadesController extends Controller
 {
     public function index()
     {
