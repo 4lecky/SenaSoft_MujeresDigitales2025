@@ -2,22 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Artista extends Model
 {
-    use HasFactory;
-
-    protected $table = 'artista';
+    protected $table = 'artistas';
     protected $primaryKey = 'id_artista';
-    public $timestamps = false;
+    protected $fillable = ['nombre','apellido','genero_musical','ciudad_origen'];
 
-    protected $fillable = [
-        'nombre',
-        'apellido',
-        'genero_musical',
-        'ciudad_origen',
-        'eventos_id'
-    ];
+    public function eventos(){
+        return $this->belongsToMany(Evento::class,'evento_artista','artista_id','evento_id')->withTimestamps();
+    }
 }

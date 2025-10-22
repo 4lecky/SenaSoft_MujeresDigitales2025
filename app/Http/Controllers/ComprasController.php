@@ -2,36 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Compras;
-use App\Models\Eventos;
 use App\Models\Boletas;
-use App\Models\Usuario;
+use App\Models\Compras;
 use Illuminate\Http\Request;
 
 class ComprasController extends Controller
 {
-    // Mostrar historial de compras por usuario
-    public function historial($id_usuario)
-    {
-        $usuario = Usuario::with(['compras.evento', 'compras.boleta'])->findOrFail($id_usuario);
-        $compras = $usuario->compras;
+    public function comprar(Request $request, Boleta $boleta){
+        $request->validate([
+            'cantidad'=>'required|integer|min:1|max:10',
+            'metodo_pago'=>'required|in:Tarjeta de credito,Tarjeta debito,PSE'
+        ]);
 
-        return view('compras.historial', compact('usuario', 'compras'));
+        if($request->cantidad > $boleta->cantidad){
+            return back()->with('error','Cantidad insuficiente de boletas');
+        }
+
+        $compra = Compras::create([
+            'usuario_id'=>auth()->id(),
+            'evento_id'=>$boleta->evento_id,
+            'boleta_id'=>$boleta->id,
+            'cantidad'=>$request->cantidad,
+            'valor_total'=>$boleta->precio*$request->cantidad,
+            'metodo_pago'=>$request->metodo_pago,
+            'estado'=>'exitosa'
+        ]);
+
+        $boleta->cantidad -= $request->cantidad;
+        $boleta->save();
+
+        return redirect()->route('compras.historial')->with('success','Compra realizada');
     }
 
-    // Registrar una nueva compra (ejemplo)
-    public function create()
-    {
-        $usuarios = Usuario::all();
-        $eventos = Eventos::all();
-        $boletas = Boletas::all();
-
-        return view('compras.create', compact('usuarios', 'eventos', 'boletas'));
-    }
-
-    public function store(Request $request)
-    {
-        Compras::create($request->all());
-        return redirect()->route('compras.historial', $request->usuarios_id);
+    public function historial(){
+        $compras = auth()->user()->compras()->with('evento','boleta')->get();
+        return view('compras.historial', compact('compras'));
     }
 }
