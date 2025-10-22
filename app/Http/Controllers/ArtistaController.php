@@ -3,63 +3,60 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artista;
+use App\Models\Evento;
 use Illuminate\Http\Request;
 
 class ArtistaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function index(){
+        $artistas = Artista::all();
+        return view('artistas.index', compact('artistas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function create(){
+        return view('artistas.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        $request->validate([
+            'nombre'=>'required|string|max:100',
+            'apellido'=>'required|string|max:100',
+            'genero_musical'=>'required|string|max:100',
+            'ciudad_origen'=>'required|string|max:100'
+        ]);
+        Artista::create($request->all());
+        return redirect()->route('artistas.index')->with('success','Artista creado');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Artista $artista)
-    {
-        //
+    public function edit(Artista $artista){
+        return view('artistas.edit', compact('artista'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Artista $artista)
-    {
-        //
+    public function update(Request $request, Artista $artista){
+        $request->validate([
+            'nombre'=>'required|string|max:100',
+            'apellido'=>'required|string|max:100',
+            'genero_musical'=>'required|string|max:100',
+            'ciudad_origen'=>'required|string|max:100'
+        ]);
+        $artista->update($request->all());
+        return redirect()->route('artistas.index')->with('success','Artista actualizado');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Artista $artista)
-    {
-        //
+    public function destroy(Artista $artista){
+        $artista->delete();
+        return redirect()->route('artistas.index')->with('success','Artista eliminado');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Artista $artista)
-    {
-        //
+    // Asociar a evento
+    public function asociarEvento(Request $request, Artista $artista, Evento $evento){
+        // Validar que el artista no tenga evento en el mismo horario
+        foreach($artista->eventos as $e){
+            if(!($evento->horaFecha_fin < $e->horaFecha_inicio || $evento->horaFecha_inicio > $e->horaFecha_fin)){
+                return back()->with('error','El artista ya tiene un evento en ese horario');
+            }
+        }
+        $artista->eventos()->attach($evento->id_eventos);
+        return back()->with('success','Artista asociado al evento');
     }
 }

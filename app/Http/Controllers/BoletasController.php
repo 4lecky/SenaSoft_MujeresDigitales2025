@@ -3,63 +3,51 @@
 namespace App\Http\Controllers;
 
 use App\Models\Boletas;
+use App\Models\Eventos;
 use Illuminate\Http\Request;
 
 class BoletasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function index(){
+        $boletas = Boletas::all();
+        return view('boletas.index', compact('boletas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function create(){
+        $eventos = Eventos::all();
+        return view('boletas.create', compact('eventos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        $request->validate([
+            'precio'=>'required|numeric',
+            'cantidad'=>'required|integer|min:1',
+            'localidad'=>'nullable|string|max:100',
+        ]);
+
+        Boletas::create($request->all());
+        return redirect()->route('boletas.index')->with('success','Boleta creada');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Boletas $boletas)
-    {
-        //
+    public function edit(Boletas $boleta){
+        $eventos = Eventos::all();
+        return view('boletas.edit', compact('boleta','eventos'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Boletas $boletas)
-    {
-        //
+    public function update(Request $request, Boleta $boleta){
+        $request->validate([
+            'precio'=>'required|numeric',
+            'cantidad'=>'required|integer|min:1',
+            'localidad'=>'nullable|string|max:100',
+        ]);
+
+        $boleta->update($request->all());
+        return redirect()->route('boletas.index')->with('success','Boleta actualizada');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Boletas $boletas)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Boletas $boletas)
-    {
-        //
+    public function destroy(Boletas $boleta){
+        $boleta->delete();
+        return redirect()->route('boletas.index')->with('success','Boleta eliminada');
     }
 }
+
