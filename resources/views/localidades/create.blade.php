@@ -14,7 +14,7 @@
 
     <div class="seccionForm" >
 
-        <form action="{{ route('eventos.store') }}" class="container_form" method='POST'>
+        <form action="{{ route('localidades.store') }}" class="container_form" method='POST'>
          @csrf
 
             <div class="campo">
@@ -22,8 +22,10 @@
                 <input type="text" placeholder="ingrese su numero de telefono" class="input_style" name='nombre'>
 
                 <label for="" class="label_style">Descripción del evento</label>
-                <textarea name="descripcion" id="" class="textA_style"></textarea>
-                <!-- <input type="text" placeholder="ingrese su numero de telefono" class="input_style"> -->
+                <select name="estados" id=""></select>
+                <option value="General">General</option>
+                <option value="Preferencial">Preferencial</option>
+                <option value="VIP">VIP</option>
             </div>
 
             <div class="campo">

@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventosController;
+use App\Http\Controllers\LocalidadesController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,6 +20,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Route::resource('eventos', EventosController::class);
 Route::resource('eventos', EventosController::class);
+Route::resource('localidades', LocalidadesController::class);
 
 require __DIR__.'/auth.php';
