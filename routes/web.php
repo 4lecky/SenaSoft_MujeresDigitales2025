@@ -32,4 +32,23 @@ Route::get('/buscar-eventos', [App\Http\Controllers\EventoController::class, 'bu
 
 Route::resource('usuarios', UsuarioController::class);
 Route::get('/compras/historial/{id}', [CompraController::class, 'historial'])->name('compras.historial');
+
+Route::middleware(['auth'])->group(function () {
+
+    // Administrador
+    Route::get('/administrador/administardor', function(){
+        return view('administrador.index'); 
+    })->name('administrador.index');
+
+    // Usuario
+    Route::get('/usuarios/usuario', function(){
+        return view('usuario.index'); 
+    })->name('usuario.index');
+
+    // Comprador
+    Route::get('/compradores/comprador', function(){
+        return view('comprador.index'); 
+    })->name('comprador.index');
+
+});
 require __DIR__.'/auth.php';
