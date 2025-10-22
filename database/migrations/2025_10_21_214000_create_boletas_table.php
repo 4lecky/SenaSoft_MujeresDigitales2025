@@ -7,11 +7,10 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void {
         Schema::create('boletas', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('evento_id')->nullable()->constrained('eventos')->onDelete('cascade');
-            $table->string('localidad')->nullable();
+            $table->bigIncrements('id_boletas');
             $table->float('precio');
             $table->integer('cantidad');
+            $table->string('localidad')->nullable();
             $table->timestamps();
         });
     }

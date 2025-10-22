@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void {
         Schema::create('eventos', function (Blueprint $table) {
-            $table->id(); // id
+            $table->bigIncrements('id_eventos');
             $table->string('nombre', 100);
             $table->string('descripcion', 255)->nullable();
-            $table->dateTime('fecha_hora_inicio')->nullable();
-            $table->dateTime('fecha_hora_fin')->nullable();
-            $table->string('lugar_realizacion', 100)->nullable();
+            $table->dateTime('horaFecha_inicio');
+            $table->dateTime('horaFecha_fin');
+            $table->decimal('latitud', 10, 7)->nullable();
+            $table->decimal('longitud', 10, 7)->nullable();
             $table->timestamps();
         });
     }
@@ -21,4 +22,3 @@ return new class extends Migration {
         Schema::dropIfExists('eventos');
     }
 };
-

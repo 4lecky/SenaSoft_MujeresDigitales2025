@@ -2,19 +2,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class Usuario extends Authenticatable
 {
-    use Notifiable;
+    use HasFactory;
 
     protected $table = 'usuarios';
     protected $primaryKey = 'id_usuarios';
-    protected $fillable = ['nombre','apellido','tipo_documento','numero_documento','correo','telefono','password','Role'];
+    protected $fillable = [
+        'nombre','apellido','tipo_documento','numero_documento','correo','telefono','password','role'
+    ];
     protected $hidden = ['password'];
 
-    public function compras(){
-        return $this->hasMany(Compra::class, 'usuarios_id');
+    public function compras()
+    {
+        return $this->hasMany(Compra::class, 'usuario_id', 'id_usuarios');
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artista;
-use App\Models\Evento;
+use App\Models\Eventos;
 use Illuminate\Http\Request;
 
 class ArtistaController extends Controller
@@ -49,7 +49,7 @@ class ArtistaController extends Controller
     }
 
     // Asociar a evento
-    public function asociarEvento(Request $request, Artista $artista, Evento $evento){
+    public function asociarEvento(Request $request, Artista $artista, Eventos $evento){
         // Validar que el artista no tenga evento en el mismo horario
         foreach($artista->eventos as $e){
             if(!($evento->horaFecha_fin < $e->horaFecha_inicio || $evento->horaFecha_inicio > $e->horaFecha_fin)){

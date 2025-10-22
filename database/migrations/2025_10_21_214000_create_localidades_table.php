@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void {
         Schema::create('localidades', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_localidades');
             $table->string('nombre', 100);
-            $table->enum('tipo', ['VIP', 'General', 'Preferencial'])->nullable();
+            $table->enum('estados', ['VIP', 'General', 'Preferencial'])->nullable();
             $table->timestamps();
         });
     }
