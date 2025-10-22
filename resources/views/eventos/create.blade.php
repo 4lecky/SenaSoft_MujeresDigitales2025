@@ -4,53 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- Css -->
+    <title>Creación de Eventos</title>
     <link rel="stylesheet" href="{{ asset('css/eventos.css') }}">
-    <!-- Iconos -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <div class="sectionIzquierda" >
+    <div class="sectionIzquierda">
+        <h3 class='title_principal'>Creación de Eventos</h3>
 
-        <h1 class='title_principal'> Crear de eventos </h1>
+        <!-- Mostrar mensaje de éxito -->
+        @if(session('success'))
+            <div class="success">{{ session('success') }}</div>
+        @endif
 
-        <form action="{{ route('eventos.store') }}" class="container_form" method='POST'>
+        <!-- Mostrar errores -->
+        @if ($errors->any())
+            <div class="errors">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="{{ route('eventos.store') }}" class="container_form" method="POST">
+            @csrf
 
             <div class="campo">
-                <label for="" class="label_style">Nombre del evento</label>
+                <label class="label_style">Nombre del evento</label>
                 <i class="ri-disc-line"></i>
-                <input type="text" placeholder="Ingrese el nombre del evento" class="input_style" name='nombre' require>
+                <input type="text" placeholder="Ingrese el nombre del evento" class="input_style" name="nombre" required>
 
-                <label for="" class="label_style">Descripción del evento</label>
-                <textarea name="descripcion" id="" class="textA_style"></textarea>
-                <!-- <input type="text" placeholder="ingrese su numero de telefono" class="input_style"> -->
+                <label class="label_style">Descripción del evento</label>
+                <textarea name="descripcion" class="textA_style"></textarea>
             </div>
 
             <div class="campo">
-                <label for="" class="label_style">Hora y fecha de incio</label>
-                <input type="datetime-local" placeholder="Fecha y hora de fin" class="input_style" name='fecha_hora_inicio' require>
+                <label class="label_style">Hora y fecha de inicio</label>
+                <input type="datetime-local" class="input_style" name="fecha_hora_inicio" required>
 
-                <label for="" class="label_style">Hora y fecha de incio</label>
-                <input type="datetime-local" placeholder="ingrese su numero de telefono" class="input_style" name='fecha_hora_fin' require>
+                <label class="label_style">Hora y fecha de fin</label>
+                <input type="datetime-local" class="input_style" name="fecha_hora_fin" required>
             </div>
+
+            
 
             <div class="containerBtn">
-                <button> Enviar <i class="ri-album-fill"></i></button>
+                <button type="submit">Enviar <i class="ri-album-fill"></i></button>
             </div>
         </form>
-
     </div>
 
     <div class="sectionDerecha">
-
         <img src="{{ asset('img/cassets_fondo.jpg') }}" alt="" class='img_fondo'>
-
-
     </div>
 
 </body>
-
 </html>

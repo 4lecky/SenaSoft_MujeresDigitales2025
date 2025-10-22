@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventosController;
 use App\Http\Controllers\LocalidadesController;
 use App\Http\Controllers\UsuarioController;
-use App\Http\Controllers\CompraController;
+use App\Http\Controllers\CompraSController;
 
 Route::get('/', function () {
     return view('welcome');

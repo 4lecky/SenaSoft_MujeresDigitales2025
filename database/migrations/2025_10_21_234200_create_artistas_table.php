@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void {
         Schema::create('artistas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_artista');
             $table->string('nombre', 100);
             $table->string('apellido', 100);
             $table->string('genero_musical', 100);
