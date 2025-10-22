@@ -18,7 +18,6 @@
         <h3 class='title_principal'> Creación de eventos </h3>
 
         <form action="{{ route('eventos.store') }}" class="container_form" method='POST'>
-         @csrf
 
             <div class="campo">
                 <label for="" class="label_style">Nombre del evento</label>
@@ -32,10 +31,10 @@
 
             <div class="campo">
                 <label for="" class="label_style">Hora y fecha de incio</label>
-                <input type="datetime-local" placeholder="Fecha y hora de fin" class="input_style" name='horaFecha_inicio' require>
+                <input type="datetime-local" placeholder="Fecha y hora de fin" class="input_style" name='fecha_hora_inicio' require>
 
                 <label for="" class="label_style">Hora y fecha de incio</label>
-                <input type="datetime-local" placeholder="ingrese su numero de telefono" class="input_style" name='horaFecha_fin' require>
+                <input type="datetime-local" placeholder="ingrese su numero de telefono" class="input_style" name='fecha_hora_fin' require>
             </div>
 
             <div class="containerBtn">

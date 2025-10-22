@@ -24,8 +24,8 @@ class EventosController extends Controller
         $request->validate([
             'nombre'=>'required|string|max:100',
             'descripcion'=>'nullable|string|max:255',
-            'horaFecha_inicio'=>'required|date',
-            'horaFecha_fin'=>'required|date|after_or_equal:horaFecha_inicio',
+            'fecha_hora_inicio'=>'required|date',
+            'fecha_hora_fin'=>'required|date|after_or_equal:fecha_hora_inicio',
             'lugar_realizacion'=>'nullable|string|max:100',
             'boletas_id'=>'nullable|exists:boletas,id',
             'localidades_id'=>'nullable|exists:localidades,id'
@@ -36,7 +36,7 @@ class EventosController extends Controller
     }
 
     public function edit(Evento $evento){
-        $boletas = Bolets::all();
+        $boletas = Boletas::all();
         $localidades = Localidades::all();
         return view('eventos.edit', compact('evento','boletas','localidades'));
     }

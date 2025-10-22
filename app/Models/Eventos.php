@@ -8,7 +8,7 @@ class Eventos extends Model
 {
     protected $table = 'eventos';
     protected $primaryKey = 'id_eventos';
-    protected $fillable = ['nombre','descripcion','horaFecha_inicio','horaFecha_fin','lugar_realizacion','boletas_id','localidades_id'];
+    protected $fillable = ['nombre','descripcion','fecha_hora_inicio','fecha_hora_fin','lugar_realizacion','boletas_id','localidades_id'];
 
     public function boleta(){
         return $this->belongsTo(Boletas::class,'boletas_id');
