@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('compras', function (Blueprint $table) {
     $table->id();
-    $table->foreignId('usuario_id')->nullable()->constrained('usuarios','id_usuarios')->onDelete('cascade');
+    $table->foreignId('user_id')->constrained()->onDelete('cascade');
     $table->foreignId('evento_id')->nullable()->constrained('eventos','id_eventos')->onDelete('cascade');
     $table->foreignId('boleta_id')->nullable()->constrained('boletas','id_boletas')->onDelete('cascade');
     $table->integer('cantidad');
