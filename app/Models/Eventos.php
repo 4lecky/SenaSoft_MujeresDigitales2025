@@ -22,4 +22,21 @@ class Eventos extends Model
         'boletas_id',
         'localides_id'
     ];
+
+    
+    public function localidad()
+    {
+        return $this->belongsTo(Localidad::class, 'localides_id', 'id_localidades');
+    }
+
+    public function boleta()
+    {
+        return $this->belongsTo(Boleta::class, 'boletas_id', 'id_boletas');
+    }
+
+    public function artistas()
+    {
+        return $this->hasMany(Artista::class, 'eventos_id', 'id_eventos');
+    }
 }
+

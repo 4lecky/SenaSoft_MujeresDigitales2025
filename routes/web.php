@@ -20,8 +20,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Route::resource('eventos', EventosController::class);
+
 Route::resource('eventos', EventosController::class);
 Route::resource('localidades', LocalidadesController::class);
+
+Route::resource('boletas', App\Http\Controllers\BoletaController::class);
+Route::resource('artistas', App\Http\Controllers\ArtistaController::class);
+Route::get('/buscar-eventos', [App\Http\Controllers\EventoController::class, 'buscar'])->name('eventos.buscar');
 
 require __DIR__.'/auth.php';

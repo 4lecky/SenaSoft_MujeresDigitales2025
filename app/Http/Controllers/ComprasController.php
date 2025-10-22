@@ -3,63 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\Compras;
+use App\Models\Eventos;
+use App\Models\Boletas;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class ComprasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    // Mostrar historial de compras por usuario
+    public function historial($id_usuario)
     {
-        //
+        $usuario = Usuario::with(['compras.evento', 'compras.boleta'])->findOrFail($id_usuario);
+        $compras = $usuario->compras;
+
+        return view('compras.historial', compact('usuario', 'compras'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Registrar una nueva compra (ejemplo)
     public function create()
     {
-        //
+        $usuarios = Usuario::all();
+        $eventos = Eventos::all();
+        $boletas = Boletas::all();
+
+        return view('compras.create', compact('usuarios', 'eventos', 'boletas'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Compras $compras)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Compras $compras)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Compras $compras)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Compras $compras)
-    {
-        //
+        Compras::create($request->all());
+        return redirect()->route('compras.historial', $request->usuarios_id);
     }
 }

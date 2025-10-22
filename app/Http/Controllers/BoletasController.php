@@ -7,59 +7,40 @@ use Illuminate\Http\Request;
 
 class BoletasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $boletas = Boletas::all();
+        return view('boletas.index', compact('boletas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('boletas.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        Boletas::create($request->all());
+        return redirect()->route('boletas.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Boletas $boletas)
+    public function edit($id)
     {
-        //
+        $boleta = Boletas::findOrFail($id);
+        return view('boletas.edit', compact('boleta'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Boletas $boletas)
+    public function update(Request $request, $id)
     {
-        //
+        $boleta = Boletas::findOrFail($id);
+        $boleta->update($request->all());
+        return redirect()->route('boletas.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Boletas $boletas)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Boletas $boletas)
-    {
-        //
+        $boleta = Boletas::findOrFail($id);
+        $boleta->delete();
+        return redirect()->route('boletas.index');
     }
 }
