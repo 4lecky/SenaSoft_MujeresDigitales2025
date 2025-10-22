@@ -1,0 +1,93 @@
+/* === ESTILOS GENERALES === */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #f0f4f8, #d9e4ec);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* === CONTENEDOR PRINCIPAL === */
+.seccionForm {
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+}
+
+.container_form {
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* === CAMPOS DEL FORMULARIO === */
+.campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.label_style {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.input_style,
+.textA_style {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background-color: #f9fafb;
+}
+
+.input_style:focus,
+.textA_style:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    background-color: #fff;
+}
+
+.textA_style {
+    resize: none;
+    min-height: 100px;
+}
+
+/* === BOTÓN === */
+button {
+    grid-column: 1 / -1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #0056b3, #003d80);
+    transform: translateY(-2px);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .container_form {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+    }
+
+    button {
+        width: 100%;
+    }
+}
