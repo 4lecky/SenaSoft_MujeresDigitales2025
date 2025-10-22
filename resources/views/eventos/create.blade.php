@@ -15,7 +15,7 @@
 
     <div class="sectionIzquierda" >
 
-        <h3 class='title_principal'> Creación de eventos </h3>
+        <h1 class='title_principal'> Crear de eventos </h1>
 
         <form action="{{ route('eventos.store') }}" class="container_form" method='POST'>
 

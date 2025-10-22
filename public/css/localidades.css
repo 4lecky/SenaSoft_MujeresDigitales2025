@@ -1,0 +1,166 @@
+
+@import url('https://fonts.googleapis.com/css2?family=BBH+Sans+Hegarty&family=SUSE:ital,wght@0,100..900;1,100..900&family=Sigmar+One&display=swap');
+/* === ESTILOS GENERALES === */
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #dfdab3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* === CONTENEDOR PRINCIPAL === */
+.sectionIzquierda {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.title_principal {
+    font-family: "BBH Sans Hegarty", sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+.container_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+    width: 85%;
+    padding: 2.5rem;
+    margin: 10px;
+    border-radius: 20px;
+    /* display: grid; */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* === CAMPOS DEL FORMULARIO === */
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    position: relative;
+}
+
+/* === LABEL === */
+.label_style {
+    font-weight: 600;
+    color: #0a0a0a;
+    margin-bottom: 5px;
+}
+
+/* === ÍCONO === */
+.campo i {
+    position: absolute;
+    left: 8px;
+    top: 38px; /* ajusta según el alto del input */
+    color: #000000;
+    font-size: 1.1rem;
+    pointer-events: none; /* evita que el ícono bloquee el input */
+    transition: color 0.3s ease;
+}
+
+/* === INPUT (solo línea inferior) === */
+.input_style {
+    border: none;
+    border-bottom: 2px solid #000;
+    background: transparent;
+    padding: 5px 10px 10px 35px; /* deja espacio al ícono */
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    color: #000;
+}
+
+.input_style::placeholder {
+    color: #777;
+}
+
+/* === FOCUS EFFECT === */
+.input_style:focus {
+    outline: none;
+    border-bottom-color: #6d3c11;
+}
+
+/* === Cambia color del ícono cuando el input tiene focus === */
+.campo:focus-within i {
+    color: #36271b;
+}
+
+/* === TEXTAREA (se mantiene con borde completo) === */
+.style_select {
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    background: transparent;
+    resize: none;
+    min-height: 20px;
+    transition: all 0.3s ease;
+}
+
+.style_select:focus {
+    outline: none;
+    border-color: #6d3c11;
+}
+
+
+/* === BOTÓN === */
+
+.containerBtn{
+    width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    grid-column: 1 / -1;
+    width: 150px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #633205, #291b01);
+    color: white;
+    font-family: "BBH Sans Hegarty", sans-serif;
+    font-weight: 100;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #633205, #291b01);
+    transform: translateY(-2px);
+}
+
+
+/* Sección derecha */
+
+.sectionDerecha {
+    width: 40%;
+    height: 100%;
+}
+
+.img_fondo {
+    width: 100%;
+    height: 650px;
+}
+
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .container_form {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+    }
+
+    button {
+        width: 100%;
+    }
+}
