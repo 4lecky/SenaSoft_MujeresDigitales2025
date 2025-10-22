@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <link rel="stylesheet" href="{{ asset('css/eventos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
     <div class="login-container">
         <div class="login-box">
@@ -13,22 +13,22 @@
 
                 <!-- Email -->
                 <div class="input-group">
-                    <label for="email">Correo electrónico</label>
+                    <label for="email" class='labels_names'>Correo electrónico</label>
                     <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" class="input-field"/>
-                    <x-input-error :messages="$errors->get('email')" class="error" />
+                    <x-input-error :messages="$errors->get('email')"  class="error" />
                 </div>
 
                 <!-- Contraseña -->
                 <div class="input-group">
-                    <label for="password">Contraseña</label>
+                    <label for="password" class='labels_names'>Contraseña</label>
                     <x-text-input id="password" type="password" name="password" required autocomplete="current-password" class="input-field"/>
                     <x-input-error :messages="$errors->get('password')" class="error" />
                 </div>
 
                 <!-- Recordarme -->
                 <div class="options">
-                    <label for="remember_me">
-                        <input id="remember_me" type="checkbox" name="remember">
+                    <label for="remember_me" class='label_remeber_me'>
+                        <input id="remember_me" type="checkbox" name="remember" >
                         Recordarme
                     </label>
 
