@@ -7,59 +7,40 @@ use Illuminate\Http\Request;
 
 class ArtistaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $artistas = Artista::all();
+        return view('artistas.index', compact('artistas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('artistas.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        Artista::create($request->all());
+        return redirect()->route('artistas.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Artista $artista)
+    public function edit($id_artista)
     {
-        //
+        $artista = Artista::findOrFail($id_artista);
+        return view('artistas.edit', compact('artista'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Artista $artista)
+    public function update(Request $request, $id_artista)
     {
-        //
+        $artista = Artista::findOrFail($id_artista);
+        $artista->update($request->all());
+        return redirect()->route('artistas.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Artista $artista)
+    public function destroy($id_artista)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Artista $artista)
-    {
-        //
+        $artista = Artista::findOrFail($id_artista);
+        $artista->delete();
+        return redirect()->route('artistas.index');
     }
 }
