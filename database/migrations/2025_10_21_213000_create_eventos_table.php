@@ -12,6 +12,8 @@ return new class extends Migration {
             $table->string('descripcion', 255)->nullable();
             $table->dateTime('horaFecha_inicio');
             $table->dateTime('horaFecha_fin');
+            $table->string('municipio')->nullable();
+            $table->string('departamento')->nullable();
             $table->decimal('latitud', 10, 7)->nullable();
             $table->decimal('longitud', 10, 7)->nullable();
             $table->timestamps();

@@ -40,6 +40,8 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
+                    <th>Municipios</th>
+                    <th>Departamentos</th>
                     <th>Fecha Inicio</th>
                     <th>Fecha Fin</th>
                     <th>Acciones</th>
@@ -51,6 +53,8 @@
                         <td>{{ $evento->id_eventos }}</td>
                         <td>{{ $evento->nombre }}</td>
                         <td>{{ $evento->descripcion }}</td>
+                        <td>{{ $evento->municipios }}</td>
+                        <td>{{ $evento->departamentos }}</td>
                         <td>{{ $evento->horaFecha_inicio }}</td>
                         <td>{{ $evento->horaFecha_fin }}</td>
                         <td>
