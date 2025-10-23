@@ -26,6 +26,8 @@ class EventosController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
+            'municipio' => 'required|string|max:255',
+            'departamento' => 'required|string|max:255',
             'fecha_hora_inicio' => 'required|date',
             'fecha_hora_fin' => 'required|date|after:fecha_hora_inicio',
         ]);
@@ -33,6 +35,8 @@ class EventosController extends Controller
         Eventos::create([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
+            'municipio' => $request->municipio,
+            'departamento' => $request->departamento,
             'horaFecha_inicio' => $request->fecha_hora_inicio,
             'horaFecha_fin' => $request->fecha_hora_fin,
         ]);
@@ -55,6 +59,8 @@ class EventosController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
+            'municipio' => 'required|string|max:255',
+            'departamento' => 'required|string|max:255',
             'fecha_hora_inicio' => 'required|date',
             'fecha_hora_fin' => 'required|date|after:fecha_hora_inicio',
         ]);
@@ -62,12 +68,21 @@ class EventosController extends Controller
         $evento->update([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
+            'municipio' => $request->municipio,
+            'departamento' => $request->departamento,
             'horaFecha_inicio' => $request->fecha_hora_inicio,
             'horaFecha_fin' => $request->fecha_hora_fin,
         ]);
 
         return redirect()->route('eventos.index')->with('success', 'Evento actualizado correctamente');
     }
+
+    public function show($id)
+    {
+        $evento = Eventos::findOrFail($id);
+        return view('eventos.show', compact('evento'));
+    }
+
 
     // Eliminar evento
     public function destroy($id)

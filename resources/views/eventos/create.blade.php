@@ -16,18 +16,18 @@
 
         <!-- Mostrar mensaje de éxito -->
         @if(session('success'))
-            <div class="success">{{ session('success') }}</div>
+        <div class="success">{{ session('success') }}</div>
         @endif
 
         <!-- Mostrar errores -->
         @if ($errors->any())
-            <div class="errors">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+        <div class="errors">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
 
         <form action="{{ route('eventos.store') }}" class="container_form" method="POST">
@@ -38,19 +38,33 @@
                 <i class="ri-disc-line"></i>
                 <input type="text" placeholder="Ingrese el nombre del evento" class="input_style" name="nombre" required>
 
+                <label class="label_style">Municipio</label>
+                <i class="ri-disc-line"></i>
+                <input type="text" placeholder="Ingrese el municipio" class="input_style" name="municipio" required>
+
+            </div>
+
+            <div class="campo">
+
+                <label class="label_style">Departamento</label>
+                <i class="ri-disc-line"></i>
+                <input type="text" placeholder="Ingrese el departamento" class="input_style" name="departamento" required>
+
+                <label class="label_style">Hora y fecha de inicio</label>
+                <input type="datetime-local" class="input_style" name="fecha_hora_inicio" required>
+
+            </div>
+
+            <div class="campo">
+
+                <label class="label_style">Hora y fecha de fin</label>
+                <input type="datetime-local" class="input_style" name="fecha_hora_fin" required>
+
                 <label class="label_style">Descripción del evento</label>
                 <textarea name="descripcion" class="textA_style"></textarea>
             </div>
 
-            <div class="campo">
-                <label class="label_style">Hora y fecha de inicio</label>
-                <input type="datetime-local" class="input_style" name="fecha_hora_inicio" required>
 
-                <label class="label_style">Hora y fecha de fin</label>
-                <input type="datetime-local" class="input_style" name="fecha_hora_fin" required>
-            </div>
-
-            
 
             <div class="containerBtn">
                 <button type="submit">Enviar <i class="ri-album-fill"></i></button>
@@ -63,4 +77,5 @@
     </div>
 
 </body>
+
 </html>

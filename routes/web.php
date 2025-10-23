@@ -25,13 +25,13 @@ Route::middleware('auth')->group(function () {
 Route::resource('eventos', EventosController::class);
 Route::resource('localidades', LocalidadesController::class);
 
-Route::resource('boletas', App\Http\Controllers\BoletaController::class);
+Route::resource('boletas', App\Http\Controllers\BoletasController::class);
 Route::resource('artistas', App\Http\Controllers\ArtistaController::class);
-Route::get('/buscar-eventos', [App\Http\Controllers\EventoController::class, 'buscar'])->name('eventos.buscar');
+Route::get('/buscar-eventos', [App\Http\Controllers\EventosController::class, 'buscar'])->name('eventos.buscar');
 
 
-Route::resource('usuarios', UsuarioController::class);
-Route::get('/compras/historial/{id}', [CompraController::class, 'historial'])->name('compras.historial');
+// Route::resource('usuarios', UsuarioController::class);
+Route::get('/compras/historial/{id}', [ComprasController::class, 'historial'])->name('compras.historial');
 
 Route::middleware(['auth'])->group(function () {
 

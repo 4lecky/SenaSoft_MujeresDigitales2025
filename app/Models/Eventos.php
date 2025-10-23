@@ -17,6 +17,8 @@ class Eventos extends Model
         'descripcion',
         'horaFecha_inicio',
         'horaFecha_fin',
+        'municipio',
+        'departamento',
         'latitud',
         'longitud',
     ];
